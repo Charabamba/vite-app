@@ -9,6 +9,7 @@ const store = useStore();
 const score = computed(() => store.getters.getCurrentScore);
 const theme = computed(() => store.getters.getCurrentTheme);
 const incomeItems = computed(() => store.getters.getIncomeItems);
+const clickUpgrades = computed(() => store.getters.getClickUpgrades);
 function switchTheme() {
   store.dispatch("switchTheme");
 }
@@ -22,17 +23,37 @@ function handleClick() {
 function buyIncome(item) {
   store.dispatch("buyIncome", item);
 }
+function cickUpgrade(id) {
+  store.dispatch("buyClickUpgrade", id);
+}
 </script>
 
 <template>
   <ScoreBoard />
   <button @click="handleClick">+1</button>
-  <p>Income shop:</p>
-  <div v-for="item of incomeItems">
+  <h2>Income shop:</h2>
+  <div v-for="item of incomeItems" :key="item.id">
     <p>{{ item.name }} - {{ item.price }}</p>
-    <button @click="buyIncome(item)" :disabled="score < item.price">
+    <button
+      v-if="!item.purchased"
+      @click="buyIncome(item)"
+      :disabled="score < item.price"
+    >
       +{{ item.income }}
     </button>
+    <p v-else>purchased</p>
+  </div>
+  <h2>Click power upgrades:</h2>
+  <div v-for="item of clickUpgrades" :key="item.id">
+    <p>{{ item.name }}: {{ item.description }}</p>
+    <button
+      v-if="!item.purchased"
+      @click="cickUpgrade(item.id)"
+      :disabled="score < item.price"
+    >
+      purchase for {{ item.price }}
+    </button>
+    <span v-else> purchased </span>
   </div>
 </template>
 

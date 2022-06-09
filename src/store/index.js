@@ -3,19 +3,55 @@ import { createStore } from "vuex";
 export default createStore({
 	state: {
 		theme: "dark",
-		score: 0,
+		score: 10,
 		income: 0,
 		clickPower: 1,
 		incomeItems: [
 			{
+				id: 1,
 				name: "first",
 				price: 10,
 				income: 1,
 			},
 			{
+				id: 2,
 				name: "second",
 				price: 20,
 				income: 2,
+			},
+		],
+		clickUpgrades: [
+			{
+				id: 1,
+				name: "1 upgrade",
+				description: "upgrade description 1",
+				price: 10,
+				multiplier: 2,
+				purchased: false,
+			},
+			{
+				id: 2,
+				name: "2 upgrade",
+				description: "upgrade description 2",
+				price: 100,
+				multiplier: 2,
+				purchased: false,
+			},
+			{
+				id: 3,
+				name: "3 upgrade",
+				description: "upgrade description 3",
+				price: 1000,
+				multiplier: 2,
+				purchased: false,
+			},
+			{
+				id: 4,
+				name: "4 upgrade",
+				description: "upgrade description 4",
+				price: 10000,
+				multiplier: 2,
+				purchased: false,
 			},
 		],
 	},
@@ -35,6 +71,14 @@ export default createStore({
 			state.score -= payload.price;
 			state.income += payload.income;
 		},
+		buyClickUpgrade(state, id) {
+			let clickUpgrade = state.clickUpgrades.find(
+				(item) => item.id === id
+			);
+			clickUpgrade.purchased = true;
+			state.score -= clickUpgrade.price;
+			state.clickPower = state.clickPower * clickUpgrade.multiplier;
+		},
 	},
 	actions: {
 		switchTheme({ commit }) {
@@ -48,6 +92,9 @@ export default createStore({
 		},
 		buyIncome({ commit }, payload) {
 			commit("buyIncome", payload);
+		},
+		buyClickUpgrade({ commit }, payload) {
+			commit("buyClickUpgrade", payload);
 		},
 	},
 	getters: {
@@ -65,6 +112,9 @@ export default createStore({
 		},
 		getIncomeItems(state) {
 			return state.incomeItems;
+		},
+		getClickUpgrades(state) {
+			return state.clickUpgrades;
 		},
 	},
 });
