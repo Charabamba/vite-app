@@ -25,55 +25,75 @@ function cickUpgrade(id) {
 </script>
 
 <template>
-  <ScoreBoard />
-  <button @click="handleClick">
-    +1
-  </button>
-  <h2>Income shop:</h2>
-  <div
-    v-for="item of incomeItems"
-    :key="item.id"
-  >
-    <p>
-      {{ item.name }} - {{ item.price }}
-    </p>
-    <button
-      v-if="!item.purchased"
-      :disabled="score < item.price"
-      @click="buyIncome(item)"
-    >
-      +{{ item.income }}
-    </button>
-    <p v-else>
-      purchased
-    </p>
-  </div>
-  <h2>Click power upgrades:</h2>
-  <div
-    v-for="item of clickUpgrades"
-    :key="item.id"
-  >
-    <p>
-      {{ item.name }}: {{ item.description }}
-    </p>
-    <button
-      v-if="!item.purchased"
-      :disabled="score < item.price"
-      @click="cickUpgrade(item.id)"
-    >
-      purchase for {{ item.price }}
-    </button>
-    <span v-else> purchased </span>
-  </div>
+  <a-layout class="layout layout_height">
+    <a-layout-header>
+      <div class="logo" />
+      <a-menu
+        v-model:selectedKeys="selectedKeys"
+        theme="dark"
+        mode="horizontal"
+        :style="{ lineHeight: '64px' }"
+      >
+        <a-menu-item key="1">
+          Home
+        </a-menu-item>
+        <a-menu-item key="2">
+          Statistic
+        </a-menu-item>
+      </a-menu>
+    </a-layout-header>
+    <a-layout-content style="padding: 32px 50px 0">
+      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }">
+        <ScoreBoard />
+        <button @click="handleClick">
+          +1
+        </button>
+        <h2>Income shop:</h2>
+        <div
+          v-for="item of incomeItems"
+          :key="item.id"
+        >
+          <p>
+            {{ item.name }} - {{ item.price }}
+          </p>
+          <button
+            v-if="!item.purchased"
+            :disabled="score < item.price"
+            @click="buyIncome(item)"
+          >
+            +{{ item.income }}
+          </button>
+          <p v-else>
+            purchased
+          </p>
+        </div>
+        <h2>Click power upgrades:</h2>
+        <div
+          v-for="item of clickUpgrades"
+          :key="item.id"
+        >
+          <p>
+            {{ item.name }}: {{ item.description }}
+          </p>
+          <button
+            v-if="!item.purchased"
+            :disabled="score < item.price"
+            @click="cickUpgrade(item.id)"
+          >
+            purchase for {{ item.price }}
+          </button>
+          <span v-else> purchased </span>
+        </div>
+      </div>
+    </a-layout-content>
+    <a-layout-footer style="text-align: center">
+      Footer copyright ©2022 Created test
+    </a-layout-footer>
+  </a-layout>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.layout.layout_height {
+  min-height: 100vh;
 }
 </style>
