@@ -2,6 +2,10 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import { useStore } from "vuex";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 const store = useStore();
 
 const links = [
@@ -14,6 +18,9 @@ const links = [
     url: "/statistic/",
   },
 ];
+const selectedRoute = computed(() => {
+  return [route.path];
+});
 
 setInterval(() => {
   store.dispatch("updateScore");
@@ -25,7 +32,7 @@ setInterval(() => {
     <a-layout-header>
       <div class="logo" />
       <a-menu
-        v-model:selectedKeys="selectedKeys"
+        v-model:selectedKeys="selectedRoute"
         theme="dark"
         mode="horizontal"
         :style="{ lineHeight: '64px' }"
@@ -41,7 +48,7 @@ setInterval(() => {
       </a-menu>
     </a-layout-header>
     <a-layout-content style="padding: 32px 50px 0">
-      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }">
+      <div class="main-content">
         <router-view />
       </div>
     </a-layout-content>
@@ -54,5 +61,15 @@ setInterval(() => {
 <style>
 .layout.layout_height {
   min-height: 100vh;
+}
+.router-link-exact-active {
+  font-weight: bold;
+}
+.main-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+.router-link-active {
 }
 </style>
