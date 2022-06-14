@@ -53,6 +53,22 @@ export default createStore({
 				multiplier: 2,
 				purchased: false,
 			},
+			{
+				id: 5,
+				name: "5 upgrade",
+				description: "upgrade description 5",
+				price: 1000,
+				multiplier: 2,
+				purchased: false,
+			},
+			{
+				id: 6,
+				name: "6 upgrade",
+				description: "upgrade description 6",
+				price: 10000,
+				multiplier: 2,
+				purchased: false,
+			},
 		],
 	},
 	mutations: {
@@ -115,6 +131,12 @@ export default createStore({
 		},
 		getClickUpgrades(state) {
 			return state.clickUpgrades;
+		},
+		availableClickUpgrades(state) {
+			return state.clickUpgrades.filter((item) => !item.purchased);
+		},
+		purchasedClickUpgrades(state) {
+			return state.clickUpgrades.filter((item) => item.purchased);
 		},
 	},
 });
