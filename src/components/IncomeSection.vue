@@ -19,18 +19,21 @@ function buyIncome(item) {
     :key="item.id"
   >
     <p>
-      {{ item.name }} - {{ item.price }}
+      {{ item.name }} - {{ item.price * (item.quantity + 1) }}
     </p>
     <a-button
       v-if="!item.purchased"
       type="primary"
-      :disabled="score < item.price"
-      @click="buyIncome(item)"
+      :disabled="score < (item.price * (item.quantity + 1))"
+      @click="buyIncome(item.id)"
     >
       +{{ item.income }}
     </a-button>
-    <p v-else>
+    <p v-if="item.quantity">
       purchased
+      {{
+        item.quantity
+      }}
     </p>
   </div>
 </template>

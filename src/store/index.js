@@ -12,12 +12,42 @@ export default createStore({
 				name: "first",
 				price: 10,
 				income: 1,
+				quantity: 0,
 			},
 			{
 				id: 2,
 				name: "second",
 				price: 20,
 				income: 2,
+				quantity: 0,
+			},
+			{
+				id: 3,
+				name: "first",
+				price: 50,
+				income: 5,
+				quantity: 0,
+			},
+			{
+				id: 4,
+				name: "second",
+				price: 100,
+				income: 10,
+				quantity: 0,
+			},
+			{
+				id: 5,
+				name: "first",
+				price: 1000,
+				income: 100,
+				quantity: 0,
+			},
+			{
+				id: 6,
+				name: "second",
+				price: 10000,
+				income: 1000,
+				quantity: 0,
 			},
 		],
 		clickUpgrades: [
@@ -83,9 +113,11 @@ export default createStore({
 		handleClick(state) {
 			state.score = state.score + state.clickPower;
 		},
-		buyIncome(state, payload) {
-			state.score -= payload.price;
-			state.income += payload.income;
+		buyIncome(state, id) {
+			let incomeItem = state.incomeItems.find((item) => item.id === id);
+			incomeItem.quantity++;
+			state.score -= incomeItem.price * incomeItem.quantity;
+			state.income += incomeItem.income;
 		},
 		buyClickUpgrade(state, id) {
 			let clickUpgrade = state.clickUpgrades.find(
