@@ -70,6 +70,4 @@ setInterval(() => {
   padding: 24px;
   min-height: 280px;
 }
-.router-link-active {
-}
 </style>
