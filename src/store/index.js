@@ -171,5 +171,23 @@ export default createStore({
 		getClicksQuantity(state) {
 			return state.clicksQuantity;
 		},
+		getStatistic(state) {
+			let statistic = [];
+			addStatisticItem("Click power", state.clickPower);
+			addStatisticItem("Clicks quantity", state.clicksQuantity);
+			addStatisticItem("Score", state.score);
+			addStatisticItem("Income", state.income);
+
+			function addStatisticItem(title, value) {
+				if (value) {
+					statistic.push({
+						title: title,
+						value: value,
+					});
+				}
+			}
+
+			return statistic;
+		},
 	},
 });

@@ -7,46 +7,22 @@ const store = useStore();
 const purchasedClickUpgrades = computed(
   () => store.getters.purchasedClickUpgrades
 );
-const clicksQuantity = computed(() => store.getters.getClicksQuantity);
-const score = computed(() => store.getters.getCurrentScore);
-const clickPower = computed(() => store.getters.getClickPowerValue);
-const income = computed(() => store.getters.getIncomeValue);
+const statistic = computed(() => store.getters.getStatistic);
 </script>
 
 <template>
   <section>
     <h2>Main:</h2>
     <ul>
-      <li v-if="clicksQuantity">
+      <li
+        v-for="item of statistic"
+        :key="item.title"
+      >
         <p>
           <b>
-            Clicks:
+            {{ item.title }}:
           </b>
-          {{ clicksQuantity }}
-        </p>
-      </li>
-      <li v-if="score">
-        <p>
-          <b>
-            Score:
-          </b>
-          {{ score }}
-        </p>
-      </li>
-      <li v-if="clickPower">
-        <p>
-          <b>
-            clickPower:
-          </b>
-          {{ clickPower }}
-        </p>
-      </li>
-      <li v-if="income">
-        <p>
-          <b>
-            income:
-          </b>
-          {{ income }}
+          {{ item.value }}
         </p>
       </li>
     </ul>
