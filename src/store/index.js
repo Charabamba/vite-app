@@ -100,18 +100,18 @@ export default createStore({
 				purchased: false,
 			},
 		],
+		clicksQuantity: 0,
 	},
 	mutations: {
 		switchTheme(state) {
-			state.theme === "dark"
-				? (state.theme = "light")
-				: (state.theme = "dark");
+			state.theme === "dark" ? (state.theme = "light") : (state.theme = "dark");
 		},
 		updateScore(state) {
 			state.score = state.score + state.income;
 		},
 		handleClick(state) {
 			state.score = state.score + state.clickPower;
+			state.clicksQuantity++;
 		},
 		buyIncome(state, id) {
 			let incomeItem = state.incomeItems.find((item) => item.id === id);
@@ -120,9 +120,7 @@ export default createStore({
 			state.income += incomeItem.income;
 		},
 		buyClickUpgrade(state, id) {
-			let clickUpgrade = state.clickUpgrades.find(
-				(item) => item.id === id
-			);
+			let clickUpgrade = state.clickUpgrades.find((item) => item.id === id);
 			clickUpgrade.purchased = true;
 			state.score -= clickUpgrade.price;
 			state.clickPower = state.clickPower * clickUpgrade.multiplier;
@@ -169,6 +167,9 @@ export default createStore({
 		},
 		purchasedClickUpgrades(state) {
 			return state.clickUpgrades.filter((item) => item.purchased);
+		},
+		getClicksQuantity(state) {
+			return state.clicksQuantity;
 		},
 	},
 });

@@ -59,6 +59,9 @@ setInterval(() => {
 </template>
 
 <style>
+#app {
+  font-family: Helvetica, sans-serif;
+}
 .layout.layout_height {
   min-height: 100vh;
 }
