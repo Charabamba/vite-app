@@ -1,14 +1,15 @@
 <script setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
+import IncomeItem from "@/components/IncomeItem.vue";
 
 const store = useStore();
 
 const incomeItems = computed(() => store.getters.getIncomeItems);
 const score = computed(() => store.getters.getCurrentScore);
 
-function buyIncome(item) {
-  store.dispatch("buyIncome", item);
+function buyIncome(id) {
+  store.dispatch("buyIncome", id);
 }
 </script>
 
@@ -18,23 +19,15 @@ function buyIncome(item) {
     v-for="item of incomeItems"
     :key="item.id"
   >
-    <p>
-      {{ item.name }} - {{ item.price * (item.quantity + 1) }}
-    </p>
-    <a-button
-      v-if="!item.purchased"
-      type="primary"
+    <IncomeItem
+      :id="item.id"
+      :name="item.name"
+      :price="item.price * (item.quantity + 1)"
+      :quantity="item.quantity"
+      :income="item.income"
       :disabled="score < (item.price * (item.quantity + 1))"
-      @click="buyIncome(item.id)"
-    >
-      +{{ item.income }}
-    </a-button>
-    <p v-if="item.quantity">
-      purchased
-      {{
-        item.quantity
-      }}
-    </p>
+      @purchase="buyIncome($event)"
+    />
   </div>
 </template>
 
