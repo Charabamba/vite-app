@@ -4,6 +4,7 @@ export default createStore({
 	state: {
 		theme: "dark",
 		score: 10,
+		allTimeScore: 10,
 		income: 0,
 		clickPower: 1,
 		incomeItems: [
@@ -107,10 +108,12 @@ export default createStore({
 			state.theme === "dark" ? (state.theme = "light") : (state.theme = "dark");
 		},
 		updateScore(state) {
-			state.score = state.score + state.income;
+			state.score += state.income;
+			state.allTimeScore += state.income;
 		},
 		handleClick(state) {
 			state.score = state.score + state.clickPower;
+			state.allTimeScore += state.clickPower;
 			state.clicksQuantity++;
 		},
 		buyIncome(state, id) {
@@ -176,6 +179,7 @@ export default createStore({
 			addStatisticItem("Click power", state.clickPower);
 			addStatisticItem("Clicks quantity", state.clicksQuantity);
 			addStatisticItem("Score", state.score);
+			addStatisticItem("All time score", state.allTimeScore);
 			addStatisticItem("Income", state.income);
 
 			function addStatisticItem(title, value) {
