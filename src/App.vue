@@ -25,6 +25,7 @@ const selectedRoute = computed(() => {
 setInterval(() => {
   store.dispatch("updateScore");
 }, 1000);
+store.dispatch("loadIncomeItems");
 </script>
 
 <template>

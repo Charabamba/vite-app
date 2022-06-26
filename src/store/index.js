@@ -1,4 +1,9 @@
 import { createStore } from "vuex";
+import axios from "axios";
+
+const baseUrl =
+	"https://clicker-f6017-default-rtdb.europe-west1.firebasedatabase.app/";
+const incomeItemsUrl = "incomeItems.json";
 
 export default createStore({
 	state: {
@@ -7,50 +12,7 @@ export default createStore({
 		allTimeScore: 10,
 		income: 0,
 		clickPower: 1,
-		incomeItems: [
-			{
-				id: 1,
-				name: "first",
-				price: 10,
-				income: 1,
-				quantity: 0,
-			},
-			{
-				id: 2,
-				name: "second",
-				price: 20,
-				income: 2,
-				quantity: 0,
-			},
-			{
-				id: 3,
-				name: "first",
-				price: 50,
-				income: 5,
-				quantity: 0,
-			},
-			{
-				id: 4,
-				name: "second",
-				price: 100,
-				income: 10,
-				quantity: 0,
-			},
-			{
-				id: 5,
-				name: "first",
-				price: 1000,
-				income: 100,
-				quantity: 0,
-			},
-			{
-				id: 6,
-				name: "second",
-				price: 10000,
-				income: 1000,
-				quantity: 0,
-			},
-		],
+		incomeItems: [],
 		clickUpgrades: [
 			{
 				id: 1,
@@ -128,8 +90,25 @@ export default createStore({
 			state.score -= clickUpgrade.price;
 			state.clickPower = state.clickPower * clickUpgrade.multiplier;
 		},
+		setIncomeItems(state, incomeItems) {
+			state.incomeItems = incomeItems;
+		},
 	},
 	actions: {
+		loadIncomeItems({ commit }) {
+			return axios
+				.get(baseUrl + incomeItemsUrl)
+				.then((res) => {
+					const incomeItemsArray = [];
+					for (let key in res.data) {
+						if (res.data[key]) {
+							incomeItemsArray.push({ ...res.data[key], id: key });
+						}
+					}
+					commit("setIncomeItems", incomeItemsArray);
+				})
+				.catch((e) => console.log(e));
+		},
 		switchTheme({ commit }) {
 			commit("switchTheme");
 		},
