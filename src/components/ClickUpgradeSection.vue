@@ -20,21 +20,30 @@ function cickUpgrade(id) {
 </script>
 
 <template>
-  <section v-if="availableClickUpgrades.length">
-    <h2>Available click power upgrades:</h2>
-    <AvailableClickUpgrade
-      v-for="item of availableClickUpgrades"
-      :id="item.id"
-      :key="item.id"
-      :name="item.name"
-      :description="item.description"
-      :disabled="score < item.price"
-      :price="item.price"
-      @purchase="cickUpgrade($event)"
-    />
-  </section>
-  <section v-else>
-    <a-spin />
+  <section
+    v-if="availableClickUpgrades.length"
+    class="investment-section"
+  >
+    <h2 class="investment-section__title">
+      Available click power upgrades:
+    </h2>
+    <div class="investment-section__container">
+      <ul class="investment-section__item-list">
+        <li
+          v-for="item of availableClickUpgrades"
+          :key="item.id"
+        >
+          <AvailableClickUpgrade
+            :id="item.id"
+            :name="item.name"
+            :description="item.description"
+            :disabled="score < item.price"
+            :price="item.price"
+            @purchase="cickUpgrade($event)"
+          />
+        </li>
+      </ul>
+    </div>
   </section>
 
   <section v-if="purchasedClickUpgrades.length">

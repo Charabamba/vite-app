@@ -29,18 +29,16 @@ function purchase(id) {
 </script>
 
 <template>
-  <div>
+  <button
+    class="investment-section__item"
+    :disabled="props.disabled"
+    @click="purchase(props.id)"
+  >
     <p>
       {{ props.name }}: {{ props.description }}
     </p>
-    <a-button
-      type="primary"
-      :disabled="props.disabled"
-      @click="purchase(props.id)"
-    >
-      purchase for {{ props.price }}
-    </a-button>
-  </div>
+    purchase for {{ props.price }}
+  </button>
 </template>
 
 <style lang="scss">

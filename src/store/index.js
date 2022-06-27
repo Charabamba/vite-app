@@ -101,6 +101,9 @@ export default createStore({
 		getCurrentScore(state) {
 			return state.score;
 		},
+		getTotalScore(state) {
+			return state.allTimeScore;
+		},
 		getClickPowerValue(state) {
 			return state.clickPower;
 		},

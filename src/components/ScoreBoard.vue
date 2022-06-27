@@ -9,9 +9,18 @@ const income = computed(() => store.getters.getIncomeValue);
 </script>
 
 <template>
-  <h1>Score {{ score }}</h1>
-  <p>Current income: {{ income }}</p>
-  <p>Current click power: {{ clickPower }}</p>
+  <section class="result-section">
+    <div class="result-section__container">
+      <p class="result-section__result-text">
+        Score is:
+        <span class="result-section__result">
+          {{ score }}
+        </span>
+      </p>
+      <p>Current income: {{ income }}</p>
+      <p>Current click power: {{ clickPower }}</p>
+    </div>
+  </section>
 </template>
 
 <style scoped>

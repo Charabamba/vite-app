@@ -20,6 +20,10 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  quantity: {
+    type: Number,
+    required: true,
+  },
 });
 
 const emit = defineEmits(["purchase"]);
@@ -30,21 +34,24 @@ function purchaseItem(id) {
 </script>
 
 <template>
-  <div>
-    <p>
-      {{ props.name }} - {{ props.price }}
-    </p>
-    <a-button
-      type="primary"
-      :disabled="props.disabled"
-      @click="purchaseItem(props.id)"
-    >
+  <button
+    class="investment-section__item"
+    :disabled="props.disabled"
+    @click="purchaseItem(props.id)"
+  >
+    get
+    <span class="investment-section__points">
       +{{ props.income }}
-    </a-button>
-    <p v-if="props.quantity">
-      purchased {{ props.quantity }}
-    </p>
-  </div>
+    </span>
+    income for
+    <span class="investment-section__cost">
+      {{ props.price }}
+    </span>
+    point
+  </button>
+  <p v-if="props.quantity">
+    purchased {{ props.quantity }}
+  </p>
 </template>
 
 <style lang="scss">

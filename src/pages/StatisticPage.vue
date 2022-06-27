@@ -3,8 +3,10 @@ import StatisticSection from "@/components/StatisticSection.vue";
 </script>
 
 <template>
-  <h1>Statistic page</h1>
-  <StatisticSection />
+  <div class="container">
+    <h1>Statistic page</h1>
+    <StatisticSection />
+  </div>
 </template>
 
 <style scoped>
