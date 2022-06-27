@@ -26,6 +26,7 @@ setInterval(() => {
   store.dispatch("updateScore");
 }, 1000);
 store.dispatch("loadIncomeItems");
+store.dispatch("loadClickUpgrades");
 </script>
 
 <template>

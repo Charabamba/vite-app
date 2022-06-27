@@ -33,6 +33,9 @@ function cickUpgrade(id) {
       @purchase="cickUpgrade($event)"
     />
   </section>
+  <section v-else>
+    <a-spin />
+  </section>
 
   <section v-if="purchasedClickUpgrades.length">
     <h2>

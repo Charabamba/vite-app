@@ -4,6 +4,7 @@ import axios from "axios";
 const baseUrl =
 	"https://clicker-f6017-default-rtdb.europe-west1.firebasedatabase.app/";
 const incomeItemsUrl = "incomeItems.json";
+const clickUpgradesUrl = "clickUpgrades.json";
 
 export default createStore({
 	state: {
@@ -13,56 +14,7 @@ export default createStore({
 		income: 0,
 		clickPower: 1,
 		incomeItems: [],
-		clickUpgrades: [
-			{
-				id: 1,
-				name: "1 upgrade",
-				description: "upgrade description 1",
-				price: 10,
-				multiplier: 2,
-				purchased: false,
-			},
-			{
-				id: 2,
-				name: "2 upgrade",
-				description: "upgrade description 2",
-				price: 100,
-				multiplier: 2,
-				purchased: false,
-			},
-			{
-				id: 3,
-				name: "3 upgrade",
-				description: "upgrade description 3",
-				price: 1000,
-				multiplier: 2,
-				purchased: false,
-			},
-			{
-				id: 4,
-				name: "4 upgrade",
-				description: "upgrade description 4",
-				price: 10000,
-				multiplier: 2,
-				purchased: false,
-			},
-			{
-				id: 5,
-				name: "5 upgrade",
-				description: "upgrade description 5",
-				price: 1000,
-				multiplier: 2,
-				purchased: false,
-			},
-			{
-				id: 6,
-				name: "6 upgrade",
-				description: "upgrade description 6",
-				price: 10000,
-				multiplier: 2,
-				purchased: false,
-			},
-		],
+		clickUpgrades: [],
 		clicksQuantity: 0,
 	},
 	mutations: {
@@ -93,6 +45,9 @@ export default createStore({
 		setIncomeItems(state, incomeItems) {
 			state.incomeItems = incomeItems;
 		},
+		setClickUpgrades(state, clickUpgrades) {
+			state.clickUpgrades = clickUpgrades;
+		},
 	},
 	actions: {
 		loadIncomeItems({ commit }) {
@@ -106,6 +61,20 @@ export default createStore({
 						}
 					}
 					commit("setIncomeItems", incomeItemsArray);
+				})
+				.catch((e) => console.log(e));
+		},
+		loadClickUpgrades({ commit }) {
+			return axios
+				.get(baseUrl + clickUpgradesUrl)
+				.then((res) => {
+					const clickUpgradesArray = [];
+					for (let key in res.data) {
+						if (res.data[key]) {
+							clickUpgradesArray.push({ ...res.data[key], id: key });
+						}
+					}
+					commit("setClickUpgrades", clickUpgradesArray);
 				})
 				.catch((e) => console.log(e));
 		},
