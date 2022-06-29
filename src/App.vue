@@ -24,10 +24,6 @@ store.dispatch("loadClickUpgrades");
 </script>
 
 <template>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
-  >
   <div class="app__wrapper">
     <header class="header">
       <div class="container">
@@ -60,6 +56,7 @@ store.dispatch("loadClickUpgrades");
 </template>
 
 <style lang="scss">
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
@@ -108,16 +105,6 @@ a {
 }
 
 /* main */
-
-.result-section__container {
-  padding: 30px 10px;
-}
-
-.result-section__result-text {
-  font-size: 70px;
-  text-align: center;
-}
-
 .actions-section__action-button {
   padding: 10px;
   background-color: #1f1f1f;
