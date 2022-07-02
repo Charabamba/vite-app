@@ -1,15 +1,11 @@
 <script setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
-import PurchasedClickUpgrade from "@/components/PurchasedClickUpgrade.vue";
 import AvailableClickUpgrade from "@/components/AvailableClickUpgrade.vue";
 
 const store = useStore();
 const score = computed(() => store.getters.getCurrentScore);
 
-const purchasedClickUpgrades = computed(
-  () => store.getters.purchasedClickUpgrades
-);
 const availableClickUpgrades = computed(
   () => store.getters.availableClickUpgrades
 );
@@ -44,18 +40,6 @@ function cickUpgrade(id) {
         </li>
       </ul>
     </div>
-  </section>
-
-  <section v-if="purchasedClickUpgrades.length">
-    <h2>
-      Purchased click power upgrades:
-    </h2>
-    <PurchasedClickUpgrade
-      v-for="item of purchasedClickUpgrades"
-      :key="item.id"
-      :name="item.name"
-      :description="item.description"
-    />
   </section>
 </template>
 

@@ -3,6 +3,7 @@ import ScoreBoard from "@/components/ScoreBoard.vue";
 import IncomeSection from "@/components/IncomeSection.vue";
 import ClickUpgradeSection from "@/components/ClickUpgradeSection.vue";
 import ActionsSection from "@/components/ActionsSection.vue";
+import PurchasedUpgradesSection from "@/components/PurchasedUpgradesSection.vue";
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import ActionsSection from "@/components/ActionsSection.vue";
     <ActionsSection />
     <IncomeSection />
     <ClickUpgradeSection />
+    <PurchasedUpgradesSection />
   </div>
 </template>
 
