@@ -122,6 +122,9 @@ export default createStore({
 		purchasedClickUpgrades(state) {
 			return state.clickUpgrades.filter((item) => item.purchased);
 		},
+		purchasedIncomeItems(state) {
+			return state.incomeItems.filter((item) => item.quantity);
+		},
 		getClicksQuantity(state) {
 			return state.clicksQuantity;
 		},

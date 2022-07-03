@@ -4,23 +4,18 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  description: {
-    type: String,
+  quantity: {
+    type: Number,
     required: true,
   },
 });
 </script>
 
 <template>
-  <li>
-    <p>
-      <b>
-        {{ props.name }}:
-      </b>
-      {{ props.description }}
-    </p>
-  </li>
+  <div>
+    {{ `${props.name} - ${props.quantity}` }}
+  </div>
 </template>
 
-<style lang="scss">
+<style>
 </style>

@@ -49,9 +49,6 @@ function purchaseItem(id) {
     </span>
     point
   </button>
-  <p v-if="props.quantity">
-    purchased {{ props.quantity }}
-  </p>
 </template>
 
 <style lang="scss">
