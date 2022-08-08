@@ -29,6 +29,7 @@ function isShow(price) {
           :key="item.id"
         >
           <IncomeItem
+            v-if="isShow(item.price)"
             :id="item.id"
             :name="item.name"
             :price="item.price * (item.quantity + 1)"
@@ -36,7 +37,6 @@ function isShow(price) {
             :income="item.income"
             :disabled="score < (item.price * (item.quantity + 1))"
             @purchase="buyIncome($event)"
-            v-if="isShow(item.price)"
           />
         </li>
       </ul>
