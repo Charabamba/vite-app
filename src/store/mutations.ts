@@ -1,32 +1,36 @@
+import { IStore, IClickPowerUpgrade, IIncomeItem } from "../models/store";
+
 export default {
-	switchTheme(state) {
+	switchTheme(state: IStore) {
 		state.theme === "dark" ? (state.theme = "light") : (state.theme = "dark");
 	},
-	updateScore(state) {
+	updateScore(state: IStore) {
 		state.score += state.income;
 		state.allTimeScore += state.income;
 	},
-	handleClick(state) {
+	handleClick(state: IStore) {
 		state.score = state.score + state.clickPower;
 		state.allTimeScore += state.clickPower;
 		state.clicksQuantity++;
 	},
-	buyIncome(state, id) {
-		let incomeItem = state.incomeItems.find((item) => item.id === id);
+	buyIncome(state: IStore, id: string) {
+		const incomeItem = state.incomeItems.find((item) => item.id === id);
 		incomeItem.quantity++;
 		state.score -= incomeItem.price * incomeItem.quantity;
 		state.income += incomeItem.income;
 	},
-	buyClickUpgrade(state, id) {
-		let clickUpgrade = state.clickUpgrades.find((item) => item.id === id);
+	buyClickUpgrade(state: IStore, id: string) {
+		console.log(typeof id);
+
+		const clickUpgrade = state.clickUpgrades.find((item) => item.id === id);
 		clickUpgrade.purchased = true;
 		state.score -= clickUpgrade.price;
 		state.clickPower = state.clickPower * clickUpgrade.multiplier;
 	},
-	setIncomeItems(state, incomeItems) {
+	setIncomeItems(state: IStore, incomeItems: Array<IIncomeItem>) {
 		state.incomeItems = incomeItems;
 	},
-	setClickUpgrades(state, clickUpgrades) {
+	setClickUpgrades(state: IStore, clickUpgrades: Array<IClickPowerUpgrade>) {
 		state.clickUpgrades = clickUpgrades;
 	},
 };

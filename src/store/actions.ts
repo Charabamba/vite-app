@@ -11,7 +11,7 @@ export default {
 			.get(baseUrl + incomeItemsUrl)
 			.then((res) => {
 				const incomeItemsArray = [];
-				for (let key in res.data) {
+				for (const key in res.data) {
 					if (res.data[key]) {
 						incomeItemsArray.push({ ...res.data[key], id: key });
 					}
@@ -25,7 +25,7 @@ export default {
 			.get(baseUrl + clickUpgradesUrl)
 			.then((res) => {
 				const clickUpgradesArray = [];
-				for (let key in res.data) {
+				for (const key in res.data) {
 					if (res.data[key]) {
 						clickUpgradesArray.push({ ...res.data[key], id: key });
 					}
