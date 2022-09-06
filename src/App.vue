@@ -2,6 +2,8 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import { useStore } from "./store";
+import { computed } from "vue";
+import FooterSection from "@/components/FooterSection.vue";
 
 const store = useStore();
 
@@ -21,10 +23,16 @@ setInterval(() => {
 }, 1000);
 store.dispatch("loadIncomeItems");
 store.dispatch("loadClickUpgrades");
+
+const currentTheme = computed(() => store.getters.getCurrentTheme);
+
+function changeTheme() {
+  store.dispatch("switchTheme");
+}
 </script>
 
 <template>
-  <div class="app__wrapper">
+  <div :class="['app__wrapper', currentTheme]">
     <header class="header">
       <div class="container">
         <div class="header__container">
@@ -38,6 +46,23 @@ store.dispatch("loadClickUpgrades");
                 {{ link.title }}
               </router-link>
             </li>
+            <li class="header__menu-item_right">
+              <button
+                class="switch-theme__button"
+                @click="changeTheme"
+              >
+                <svg
+                  class="switch-theme__icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12 20.5V3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5Z" />
+                </svg>
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -45,13 +70,7 @@ store.dispatch("loadClickUpgrades");
     <div class="main-content">
       <router-view />
     </div>
-    <footer class="footer">
-      <div class="container">
-        <p class="footer__version">
-          Footer copyright ©2022 Created test
-        </p>
-      </div>
-    </footer>
+    <FooterSection />
   </div>
 </template>
 
@@ -81,7 +100,26 @@ a {
   color: #1f1f1f;
   display: block;
 }
-
+.header__menu-item_right {
+  margin-left: auto;
+}
+.router-link-active {
+  text-decoration: underline;
+}
+.switch-theme__button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.switch-theme__icon {
+  fill: #ffffff;
+  transition: 0.15s;
+}
+.dark .switch-theme__icon {
+  filter: invert(100%);
+}
 /* header */
 
 .header {
@@ -92,8 +130,10 @@ a {
     border-bottom: 2px solid #1f1f1f;
   }
   .header__menu-item {
-    padding: 10px 20px;
     transition: 0.3s;
+  }
+  .header__menu-item a {
+    padding: 10px 20px;
   }
   .header__menu-item:hover {
     background-color: #f2f2f2;
@@ -105,22 +145,10 @@ a {
 }
 
 /* main */
-.actions-section__action-button {
-  padding: 10px;
-  background-color: #1f1f1f;
-  color: #ffffff;
-  border: 2px solid #1f1f1f;
-  border-radius: 5px;
-  transition: 0.3s;
-  outline: none;
-}
-.actions-section__action-button:hover {
-  background-color: #f2f2f2;
-  color: #1f1f1f;
-}
-.actions-section__item-list {
-  display: flex;
-  justify-content: center;
+.main__title {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 24px 0;
 }
 
 /* invest */
@@ -154,15 +182,5 @@ a {
 }
 .investment-section__cost {
   font-weight: bold;
-}
-/* footer */
-
-.footer {
-  background-color: #1f1f1f;
-  color: #f2f2f2;
-  text-align: right;
-  .container {
-    padding: 15px 10px;
-  }
 }
 </style>

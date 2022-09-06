@@ -4,7 +4,11 @@ import StatisticSection from "@/components/StatisticSection.vue";
 
 <template>
   <div class="container">
-    <h1>Statistic page</h1>
+    <h1 class="main__title">
+      Statistic page
+    </h1>
+  </div>
+  <div class="container">
     <StatisticSection />
   </div>
 </template>
