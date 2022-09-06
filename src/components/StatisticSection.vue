@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "../store";
 
 const store = useStore();
 

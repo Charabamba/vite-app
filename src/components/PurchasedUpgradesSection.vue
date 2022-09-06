@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "../store";
 import PurchasedClickUpgrade from "@/components/PurchasedClickUpgrade.vue";
 import PurchasedIncomeItem from "@/components/PurchasedIncomeItem.vue";
 
