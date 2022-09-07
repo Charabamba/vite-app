@@ -16,6 +16,7 @@
   background-color: #1f1f1f;
   color: #f2f2f2;
   text-align: right;
+  border-top: 2px solid var(--border-main);
   .container {
     padding: 15px 10px;
   }

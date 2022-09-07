@@ -13,7 +13,10 @@ const purchasedIncomeItems = computed(() => store.getters.purchasedIncomeItems);
 </script>
 
 <template>
-  <h3 class="investment-section__title">
+  <h3
+    v-if="purchasedIncomeItems.length || purchasedClickUpgrades.length"
+    class="investment-section__title"
+  >
     Purchased upgrades
   </h3>
   <section class="purchased-upgrades">

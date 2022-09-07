@@ -76,6 +76,23 @@ function changeTheme() {
 
 <style lang="scss">
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+:root {
+  --background-main: #f2f2f2;
+  --background-secondary: #1f1f1f;
+  --background-light: #f2f2f2;
+  --border-main: #1f1f1f;
+  --color-main: #1f1f1f;
+  --color-secondary: #f2f2f2;
+}
+.dark {
+  --background-main: #1f1f1f;
+  --background-secondary: #f2f2f2;
+  --border-main: #f2f2f2;
+  --color-main: #f2f2f2;
+  --color-secondary: #1f1f1f;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
@@ -87,12 +104,13 @@ body {
   max-width: 1600px;
 }
 .app__wrapper {
+  color: var(--color-main);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   .main-content {
     flex-grow: 1;
-    background-color: #f2f2f2;
+    background-color: var(--background-main);
   }
 }
 a {
@@ -125,9 +143,9 @@ a {
 .header {
   background-color: #1f1f1f;
   color: white;
+  border-bottom: 2px solid var(--border-main);
   .header__menu {
     display: flex;
-    border-bottom: 2px solid #1f1f1f;
   }
   .header__menu-item {
     transition: 0.3s;
@@ -168,14 +186,16 @@ a {
 }
 .investment-section__item {
   padding: 10px 20px;
-  border: 2px solid #1f1f1f;
+  color: var(--color-main);
+  border: 2px solid var(--border-main);
+  background-color: var(--background-main);
   border-radius: 5px;
   transition: 0.3s;
   width: 100%;
 }
-.investment-section__item:hover {
-  background-color: #1f1f1f;
-  color: #f2f2f2;
+.investment-section__item:not(:disabled):hover {
+  background-color: var(--background-secondary);
+  color: var(--color-secondary);
 }
 .investment-section__item:disabled {
   opacity: 0.5;
