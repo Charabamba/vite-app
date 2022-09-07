@@ -24,21 +24,22 @@ function isShow(price) {
     </h2>
     <div class="investment-section__container">
       <ul class="investment-section__item-list">
-        <li
+        <template
           v-for="item of incomeItems"
           :key="item.id"
         >
-          <IncomeItem
-            v-if="isShow(item.price)"
-            :id="item.id"
-            :name="item.name"
-            :price="item.price * (item.quantity + 1)"
-            :quantity="item.quantity"
-            :income="item.income"
-            :disabled="score < (item.price * (item.quantity + 1))"
-            @purchase="buyIncome($event)"
-          />
-        </li>
+          <li v-if="isShow(item.price)">
+            <IncomeItem
+              :id="item.id"
+              :name="item.name"
+              :price="item.price * (item.quantity + 1)"
+              :quantity="item.quantity"
+              :income="item.income"
+              :disabled="score < (item.price * (item.quantity + 1))"
+              @purchase="buyIncome($event)"
+            />
+          </li>
+        </template>
       </ul>
     </div>
   </section>

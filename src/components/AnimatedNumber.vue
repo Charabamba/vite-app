@@ -24,7 +24,6 @@ export default {
   },
   watch: {
     number(newValue) {
-      console.log(newValue);
       gsap.to(this.$data, {
         duration: this.animationSeconds,
         tweenedNumber: newValue,
