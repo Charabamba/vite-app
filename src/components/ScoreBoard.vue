@@ -1,4 +1,5 @@
 <script setup>
+import animatedNumber from "@/components/AnimatedNumber.vue";
 import { useStore } from "../store";
 import { computed } from "vue";
 
@@ -14,7 +15,10 @@ const income = computed(() => store.getters.getIncomeValue);
       <p class="result-section__result-text">
         Score is:
         <span class="result-section__result">
-          {{ score }}
+          <animatedNumber
+            :number="score"
+            :animation-seconds="1"
+          />
         </span>
       </p>
       <p class="result-section__text_small">
