@@ -1,19 +1,14 @@
 <script setup>
-import { computed } from "vue";
-import { useStore } from "../store";
 import IncomeItem from "@/components/IncomeItem.vue";
-
-const store = useStore();
-
-const incomeItems = computed(() => store.getters.getIncomeItems);
-const score = computed(() => store.getters.getCurrentScore);
-const totalScore = computed(() => store.getters.getTotalScore);
+import {useClickerStore} from "@/stores/clicker";
+const clickerStore = useClickerStore();
 
 function buyIncome(id) {
-  store.dispatch("buyIncome", id);
+  clickerStore.buyIncome(id)
 }
+
 function isShow(price) {
-  return totalScore.value / price >= 0.6;
+  return clickerStore.allTimeScore / price >= 0.6;
 }
 </script>
 
@@ -24,20 +19,11 @@ function isShow(price) {
     </h2>
     <div class="investment-section__container">
       <ul class="investment-section__item-list">
-        <template
-          v-for="item of incomeItems"
-          :key="item.id"
-        >
+        <template v-for="item of clickerStore.incomeItems" :key="item.id">
           <li v-if="isShow(item.price)">
-            <IncomeItem
-              :id="item.id"
-              :name="item.name"
-              :price="item.price * (item.quantity + 1)"
-              :quantity="item.quantity"
-              :income="item.income"
-              :disabled="score < (item.price * (item.quantity + 1))"
-              @purchase="buyIncome($event)"
-            />
+            <IncomeItem :id="item.id" :name="item.name" :price="item.price * (item.quantity + 1)"
+              :quantity="item.quantity" :income="item.income"
+              :disabled="clickerStore.score < (item.price * (item.quantity + 1))" @purchase="buyIncome($event)" />
           </li>
         </template>
       </ul>
@@ -45,5 +31,4 @@ function isShow(price) {
   </section>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

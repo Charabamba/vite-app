@@ -1,23 +1,14 @@
 <script setup>
-import { computed } from "vue";
-import { useStore } from "../store";
+import {useClickerStore} from "@/stores/clicker";
 
-const store = useStore();
-
-const purchasedClickUpgrades = computed(
-  () => store.getters.purchasedClickUpgrades
-);
-const statistic = computed(() => store.getters.getStatistic);
+const clickerStore = useClickerStore();
 </script>
 
 <template>
   <section>
     <h2>Main:</h2>
     <ul>
-      <li
-        v-for="item of statistic"
-        :key="item.title"
-      >
+      <li v-for="item of clickerStore.getStatistic" :key="item.title">
         <p>
           <b>
             {{ item.title }}:
@@ -27,13 +18,10 @@ const statistic = computed(() => store.getters.getStatistic);
       </li>
     </ul>
   </section>
-  <section v-if="purchasedClickUpgrades.length">
+  <section v-if="clickerStore.purchasedClickUpgrades.length">
     <h2>Upgrades:</h2>
     <ul>
-      <li
-        v-for="item of purchasedClickUpgrades"
-        :key="item.id"
-      >
+      <li v-for="item of clickerStore.purchasedClickUpgrades" :key="item.id">
         <p>
           {{ item.name }}: {{ item.description }}
         </p>
@@ -42,5 +30,4 @@ const statistic = computed(() => store.getters.getStatistic);
   </section>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

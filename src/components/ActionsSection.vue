@@ -1,13 +1,11 @@
 <script setup>
-import { useStore } from "../store";
-import { computed } from "vue";
+import {useClickerStore} from "@/stores/clicker";
 
-const store = useStore();
+const clickerStore = useClickerStore();
 
 function handleClick() {
-  store.dispatch("handleClick");
+  clickerStore.handleClick()
 }
-const clickPower = computed(() => store.getters.getClickPowerValue);
 </script>
 
 <template>
@@ -15,13 +13,10 @@ const clickPower = computed(() => store.getters.getClickPowerValue);
     <div class="actions-section__container">
       <ul class="actions-section__item-list">
         <li class="actions-section__item">
-          <button
-            class="actions-section__action-button"
-            @click="handleClick"
-          >
+          <button class="actions-section__action-button" @click="handleClick">
             +
             <span class="actions-section__action-span">
-              {{ clickPower }}
+              {{ clickerStore.clickPower }}
             </span>
           </button>
         </li>
@@ -39,11 +34,13 @@ const clickPower = computed(() => store.getters.getClickPowerValue);
   border-radius: 5px;
   transition: 0.3s;
   outline: none;
+
   &:hover {
     background-color: var(--background-secondary);
     color: var(--color-secondary);
   }
 }
+
 .actions-section__item-list {
   display: flex;
   justify-content: center;

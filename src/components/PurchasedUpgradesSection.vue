@@ -1,41 +1,25 @@
 <script setup>
-import { computed } from "vue";
-import { useStore } from "../store";
 import PurchasedClickUpgrade from "@/components/PurchasedClickUpgrade.vue";
 import PurchasedIncomeItem from "@/components/PurchasedIncomeItem.vue";
+import {useClickerStore} from "@/stores/clicker";
 
-const store = useStore();
-
-const purchasedClickUpgrades = computed(
-  () => store.getters.purchasedClickUpgrades
-);
-const purchasedIncomeItems = computed(() => store.getters.purchasedIncomeItems);
+const clickerStore = useClickerStore();
 </script>
 
 <template>
-  <h3
-    v-if="purchasedIncomeItems.length || purchasedClickUpgrades.length"
-    class="investment-section__title"
-  >
+  <h3 v-if="clickerStore.purchasedIncomeItems.length || clickerStore.purchasedClickUpgrades.length"
+    class="investment-section__title">
     Purchased upgrades
   </h3>
   <section class="purchased-upgrades">
     <div class="purchased-upgrades__container">
       <ul>
-        <PurchasedIncomeItem
-          v-for="item of purchasedIncomeItems"
-          :key="item.id"
-          :name="item.name"
-          :quantity="item.quantity"
-        />
+        <PurchasedIncomeItem v-for="item of clickerStore.purchasedIncomeItems" :key="item.id" :name="item.name"
+          :quantity="item.quantity" />
       </ul>
       <ul>
-        <PurchasedClickUpgrade
-          v-for="item of purchasedClickUpgrades"
-          :key="item.id"
-          :name="item.name"
-          :description="item.description"
-        />
+        <PurchasedClickUpgrade v-for="item of clickerStore.purchasedClickUpgrades" :key="item.id" :name="item.name"
+          :description="item.description" />
       </ul>
     </div>
   </section>

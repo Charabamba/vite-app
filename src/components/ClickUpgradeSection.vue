@@ -1,47 +1,28 @@
 <script setup>
-import { computed } from "vue";
-import { useStore } from "../store";
 import AvailableClickUpgrade from "@/components/AvailableClickUpgrade.vue";
+import {useClickerStore} from "@/stores/clicker";
 
-const store = useStore();
-const score = computed(() => store.getters.getCurrentScore);
-
-const availableClickUpgrades = computed(
-  () => store.getters.availableClickUpgrades
-);
+const clickerStore = useClickerStore();
 
 function cickUpgrade(id) {
-  store.dispatch("buyClickUpgrade", id);
+  clickerStore.buyClickUpgrade(id)
 }
 </script>
 
 <template>
-  <section
-    v-if="availableClickUpgrades.length"
-    class="investment-section"
-  >
+  <section v-if="clickerStore.availableClickUpgrades.length" class="investment-section">
     <h2 class="investment-section__title">
       Available click power upgrades:
     </h2>
     <div class="investment-section__container">
       <ul class="investment-section__item-list">
-        <li
-          v-for="item of availableClickUpgrades"
-          :key="item.id"
-        >
-          <AvailableClickUpgrade
-            :id="item.id"
-            :name="item.name"
-            :description="item.description"
-            :disabled="score < item.price"
-            :price="item.price"
-            @purchase="cickUpgrade($event)"
-          />
+        <li v-for="item of clickerStore.availableClickUpgrades" :key="item.id">
+          <AvailableClickUpgrade :id="item.id" :name="item.name" :description="item.description"
+            :disabled="clickerStore.score < item.price" :price="item.price" @purchase="cickUpgrade($event)" />
         </li>
       </ul>
     </div>
   </section>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

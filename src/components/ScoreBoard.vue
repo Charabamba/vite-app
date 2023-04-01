@@ -1,12 +1,8 @@
 <script setup>
 import animatedNumber from "@/components/AnimatedNumber.vue";
-import { useStore } from "../store";
-import { computed } from "vue";
+import {useClickerStore} from "@/stores/clicker";
 
-const store = useStore();
-const score = computed(() => store.getters.getCurrentScore);
-const clickPower = computed(() => store.getters.getClickPowerValue);
-const income = computed(() => store.getters.getIncomeValue);
+const clickerStore = useClickerStore();
 </script>
 
 <template>
@@ -15,17 +11,14 @@ const income = computed(() => store.getters.getIncomeValue);
       <p class="result-section__result-text">
         Score is:
         <span class="result-section__result">
-          <animatedNumber
-            :number="score"
-            :animation-seconds="1"
-          />
+          <animatedNumber :number="clickerStore.score" :animation-seconds="1" />
         </span>
       </p>
       <p class="result-section__text_small">
-        Current income: {{ income }}
+        Current income: {{ clickerStore.income }}
       </p>
       <p class="result-section__text_small">
-        Current click power: {{ clickPower }}
+        Current click power: {{ clickerStore.clickPower }}
       </p>
     </div>
   </section>
