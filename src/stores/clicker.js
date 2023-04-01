@@ -79,45 +79,47 @@ export const useClickerStore = defineStore("clicker", {
 			this.score -= clickUpgrade.price;
 			this.clickPower = this.clickPower * clickUpgrade.multiplier;
 		},
-		setIncomeItems(incomeItems) {
-			this.incomeItems = incomeItems;
-		},
-		setClickUpgrades(clickUpgrades) {
-			this.clickUpgrades = clickUpgrades;
-		},
-		loadIncomeItems() {
-			return axios
-				.get(baseUrl + incomeItemsUrl)
-				.then((res) => {
-					const incomeItemsArray = [];
-					for (const key in res.data) {
-						if (res.data[key]) {
-							incomeItemsArray.push({
-								...res.data[key],
-								id: key,
-							});
-						}
+		async loadIncomeItems() {
+			try {
+				const res = await fetch(baseUrl + incomeItemsUrl);
+				if (!res.ok) {
+					throw new Error("Something went wrong");
+				}
+				const data = await res.json();
+				const incomeItemsArray = [];
+				for (const key in data) {
+					if (data[key]) {
+						incomeItemsArray.push({
+							...data[key],
+							id: key,
+						});
 					}
-					this.setIncomeItems(incomeItemsArray);
-				})
-				.catch((e) => console.log(e));
+				}
+				this.incomeItems = incomeItemsArray;
+			} catch (err) {
+				console.log(err.message);
+			}
 		},
-		loadClickUpgrades() {
-			return axios
-				.get(baseUrl + clickUpgradesUrl)
-				.then((res) => {
-					const clickUpgradesArray = [];
-					for (const key in res.data) {
-						if (res.data[key]) {
-							clickUpgradesArray.push({
-								...res.data[key],
-								id: key,
-							});
-						}
+		async loadClickUpgrades() {
+			try {
+				const res = await fetch(baseUrl + clickUpgradesUrl);
+				if (!res.ok) {
+					throw new Error("Something went wrong");
+				}
+				const data = await res.json();
+				const clickUpgradesArray = [];
+				for (const key in data) {
+					if (data[key]) {
+						clickUpgradesArray.push({
+							...data[key],
+							id: key,
+						});
 					}
-					this.setClickUpgrades(clickUpgradesArray);
-				})
-				.catch((e) => console.log(e));
+				}
+				this.clickUpgrades = clickUpgradesArray;
+			} catch (err) {
+				console.log(err.message);
+			}
 		},
 	},
 });
