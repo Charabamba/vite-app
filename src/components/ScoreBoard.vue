@@ -1,6 +1,6 @@
 <script setup>
 import animatedNumber from "@/components/AnimatedNumber.vue";
-import {useClickerStore} from "@/stores/clicker";
+import { useClickerStore } from "@/stores/clicker";
 
 const clickerStore = useClickerStore();
 </script>
@@ -11,7 +11,10 @@ const clickerStore = useClickerStore();
       <p class="result-section__result-text">
         Score is:
         <span class="result-section__result">
-          <animatedNumber :number="clickerStore.score" :animation-seconds="1" />
+          <animatedNumber
+            :number="clickerStore.score"
+            :animation-seconds="1"
+          />
         </span>
       </p>
       <p class="result-section__text_small">

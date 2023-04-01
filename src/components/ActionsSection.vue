@@ -1,10 +1,10 @@
 <script setup>
-import {useClickerStore} from "@/stores/clicker";
+import { useClickerStore } from "@/stores/clicker";
 
 const clickerStore = useClickerStore();
 
 function handleClick() {
-  clickerStore.handleClick()
+  clickerStore.handleClick();
 }
 </script>
 
@@ -13,7 +13,10 @@ function handleClick() {
     <div class="actions-section__container">
       <ul class="actions-section__item-list">
         <li class="actions-section__item">
-          <button class="actions-section__action-button" @click="handleClick">
+          <button
+            class="actions-section__action-button"
+            @click="handleClick"
+          >
             +
             <span class="actions-section__action-span">
               {{ clickerStore.clickPower }}

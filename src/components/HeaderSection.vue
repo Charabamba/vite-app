@@ -1,5 +1,5 @@
 <script setup>
-import {useClickerStore} from "@/stores/clicker";
+import { useClickerStore } from "@/stores/clicker";
 
 const clickerStore = useClickerStore();
 
@@ -15,7 +15,7 @@ const links = [
 ];
 
 function changeTheme() {
-  clickerStore.switchTheme()
+  clickerStore.switchTheme();
 }
 </script>
 
@@ -24,17 +24,29 @@ function changeTheme() {
     <div class="container">
       <div class="header__container">
         <ul class="header__menu">
-          <li v-for="link of links" :key="link.url" class="header__menu-item">
+          <li
+            v-for="link of links"
+            :key="link.url"
+            class="header__menu-item"
+          >
             <router-link :to="link.url">
               {{ link.title }}
             </router-link>
           </li>
           <li class="header__menu-item_right">
-            <button class="switch-theme__button" @click="changeTheme">
-              <svg class="switch-theme__icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12 20.5V3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5Z" />
+            <button
+              class="switch-theme__button"
+              @click="changeTheme"
+            >
+              <svg
+                class="switch-theme__icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12 20.5V3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5Z" />
               </svg>
             </button>
           </li>
