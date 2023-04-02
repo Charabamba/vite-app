@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import axios from "axios";
 
 const baseUrl =
 	"https://clicker-f6017-default-rtdb.europe-west1.firebasedatabase.app/";
