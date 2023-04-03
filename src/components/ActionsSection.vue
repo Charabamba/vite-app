@@ -1,5 +1,6 @@
 <script setup>
 import { useClickerStore } from "@/stores/clicker";
+import BaseButton from "@/components/BaseButton.vue";
 
 const clickerStore = useClickerStore();
 
@@ -13,7 +14,7 @@ function handleClick() {
     <div class="actions-section__container">
       <ul class="actions-section__item-list">
         <li class="actions-section__item">
-          <button
+          <BaseButton
             class="actions-section__action-button"
             @click="handleClick"
           >
@@ -21,7 +22,7 @@ function handleClick() {
             <span class="actions-section__action-span">
               {{ clickerStore.clickPower }}
             </span>
-          </button>
+          </BaseButton>
         </li>
       </ul>
     </div>
