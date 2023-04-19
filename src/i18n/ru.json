@@ -1,0 +1,9 @@
+{
+	"pages": {
+		"homePage": "Главная",
+		"statisticPage": "Стастистика"
+	},
+	"buttons": {
+		"switchLang": "Переключить язык"
+	}
+}

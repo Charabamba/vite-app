@@ -1,21 +1,30 @@
 <script setup>
+import { reactive } from "vue";
 import { useClickerStore } from "@/stores/clicker";
+import { useI18n } from "vue-i18n";
+const { t, locale } = useI18n({
+  useScope: "global",
+});
 
 const clickerStore = useClickerStore();
 
-const links = [
+const links = reactive([
   {
-    title: "Home",
+    title: t("pages.homePage"),
     url: "/",
   },
   {
-    title: "Statistic",
+    title: t("pages.statisticPage"),
     url: "/statistic/",
   },
-];
+]);
 
 function changeTheme() {
   clickerStore.switchTheme();
+}
+function switchLang() {
+  locale.value = locale.value === "en" ? "ru" : "en";
+  localStorage.setItem("lang", locale.value);
 }
 </script>
 
@@ -32,6 +41,11 @@ function changeTheme() {
             <router-link :to="link.url">
               {{ link.title }}
             </router-link>
+          </li>
+          <li class="header__menu-item">
+            <button @click="switchLang">
+              {{ $t('buttons.switchLang') }}
+            </button>
           </li>
           <li class="header__menu-item_right">
             <button

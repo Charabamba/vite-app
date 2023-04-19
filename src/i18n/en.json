@@ -1,0 +1,9 @@
+{
+	"pages": {
+		"homePage": "Home",
+		"statisticPage": "Statistic"
+	},
+	"buttons": {
+		"switchLang": "Switch lang"
+	}
+}
