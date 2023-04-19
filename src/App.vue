@@ -3,12 +3,12 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import FooterSection from "@/components/FooterSection.vue";
 import HeaderSection from "@/components/HeaderSection.vue";
-import {useClickerStore} from "@/stores/clicker";
+import { useClickerStore } from "@/stores/clicker";
 
 const clickerStore = useClickerStore();
 
 setInterval(() => {
-  clickerStore.updateScore()
+  clickerStore.updateScore();
 }, 1000);
 clickerStore.loadClickUpgrades();
 clickerStore.loadIncomeItems();
@@ -74,10 +74,6 @@ a {
   display: block;
 }
 
-.header__menu-item_right {
-  margin-left: auto;
-}
-
 .router-link-active {
   text-decoration: underline;
 }
@@ -100,35 +96,6 @@ a {
 }
 
 /* header */
-
-.header {
-  background-color: #1f1f1f;
-  color: white;
-  position: sticky;
-  top: 0px;
-  border-bottom: 2px solid var(--border-main);
-
-  .header__menu {
-    display: flex;
-  }
-
-  .header__menu-item {
-    transition: 0.3s;
-  }
-
-  .header__menu-item a {
-    padding: 10px 20px;
-  }
-
-  .header__menu-item:hover {
-    background-color: #f2f2f2;
-    color: #1f1f1f;
-  }
-
-  .header__menu-item a {
-    color: inherit;
-  }
-}
 
 /* main */
 .main__title {

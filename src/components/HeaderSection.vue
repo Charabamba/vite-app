@@ -42,11 +42,6 @@ function switchLang() {
               {{ link.title }}
             </router-link>
           </li>
-          <li class="header__menu-item">
-            <button @click="switchLang">
-              {{ $t('buttons.switchLang') }}
-            </button>
-          </li>
           <li class="header__menu-item_right">
             <button
               class="switch-theme__button"
@@ -64,6 +59,11 @@ function switchLang() {
               </svg>
             </button>
           </li>
+          <li class="header__menu-item">
+            <button @click="switchLang">
+              {{ $t('buttons.switchLang') }}
+            </button>
+          </li>
         </ul>
       </div>
     </div>
@@ -71,8 +71,6 @@ function switchLang() {
 </template>
 
 <style lang="scss">
-/* header */
-
 .header {
   background-color: #1f1f1f;
   color: white;
@@ -86,19 +84,26 @@ function switchLang() {
 
   .header__menu-item {
     transition: 0.3s;
+    a,
+    button {
+      padding: 10px 20px;
+      color: inherit;
+    }
+    button {
+      background: none;
+      border: none;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    &:hover {
+      background-color: #f2f2f2;
+      color: #1f1f1f;
+    }
   }
 
-  .header__menu-item a {
-    padding: 10px 20px;
-  }
-
-  .header__menu-item:hover {
-    background-color: #f2f2f2;
-    color: #1f1f1f;
-  }
-
-  .header__menu-item a {
-    color: inherit;
+  .header__menu-item_right {
+    margin-left: auto;
   }
 }
 </style>
