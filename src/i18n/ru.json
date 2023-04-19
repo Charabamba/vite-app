@@ -4,6 +4,9 @@
 		"statisticPage": "Стастистика"
 	},
 	"buttons": {
-		"switchLang": "Переключить язык"
-	}
+		"switchLang": "en"
+	},
+	"scoreText": "Счет:",
+	"currentIncome": "Текущий доход:",
+	"currentClickPower": "Мощность клика:"
 }

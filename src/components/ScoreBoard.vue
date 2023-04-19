@@ -1,6 +1,10 @@
 <script setup>
 import animatedNumber from "@/components/AnimatedNumber.vue";
 import { useClickerStore } from "@/stores/clicker";
+import { useI18n } from "vue-i18n";
+const { t, locale } = useI18n({
+  useScope: "global",
+});
 
 const clickerStore = useClickerStore();
 </script>
@@ -9,7 +13,7 @@ const clickerStore = useClickerStore();
   <section class="result-section">
     <div class="result-section__container">
       <p class="result-section__result-text">
-        Score is:
+        {{ $t('scoreText') }}
         <span class="result-section__result">
           <animatedNumber
             :number="clickerStore.score"
@@ -18,10 +22,10 @@ const clickerStore = useClickerStore();
         </span>
       </p>
       <p class="result-section__text_small">
-        Current income: {{ clickerStore.income }}
+        {{ $t('currentIncome') }} {{ clickerStore.income }}
       </p>
       <p class="result-section__text_small">
-        Current click power: {{ clickerStore.clickPower }}
+        {{ $t('currentClickPower') }} {{ clickerStore.clickPower }}
       </p>
     </div>
   </section>

@@ -4,6 +4,9 @@
 		"statisticPage": "Statistic"
 	},
 	"buttons": {
-		"switchLang": "Switch lang"
-	}
+		"switchLang": "ru"
+	},
+	"scoreText": "Score is:",
+	"currentIncome": "Current income:",
+	"currentClickPower": "Click power:"
 }

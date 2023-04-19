@@ -10,11 +10,11 @@ const clickerStore = useClickerStore();
 
 const links = reactive([
   {
-    title: t("pages.homePage"),
+    title: "pages.homePage",
     url: "/",
   },
   {
-    title: t("pages.statisticPage"),
+    title: "pages.statisticPage",
     url: "/statistic/",
   },
 ]);
@@ -39,7 +39,7 @@ function switchLang() {
             class="header__menu-item"
           >
             <router-link :to="link.url">
-              {{ link.title }}
+              {{ $t(link.title) }}
             </router-link>
           </li>
           <li class="header__menu-item_right">
